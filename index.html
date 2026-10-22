@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bella Insurance | ปรึกษาประกันฟรี</title>
+<style>
+:root{--bg:#f2f8ff;--card:#fff;--ink:#16324f;--mute:#5d7590;--pri:#3aa0f0;--pri2:#1f84d6;--soft:#e3f1fd;--line:#cfe3f6;--ok:#2bb673;--err:#d64545;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a28;--card:#16263a;--ink:#eaf3fc;--mute:#9db5cc;--soft:#1d3550;--line:#2a4666}}
+:root[data-theme="dark"]{--bg:#0e1a28;--card:#16263a;--ink:#eaf3fc;--mute:#9db5cc;--soft:#1d3550;--line:#2a4666}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Thai","Sarabun",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;min-height:100vh}
+.wrap{max-width:480px;margin:0 auto;padding:18px 16px 40px}
+header{text-align:center;padding:14px 0 10px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:22px;color:var(--pri2)}
+.logo i{font-style:normal;background:linear-gradient(135deg,#7cc4fb,#3aa0f0);color:#fff;border-radius:12px;width:38px;height:38px;display:grid;place-items:center}
+header p{margin:6px 0 0;color:var(--mute);font-size:14px}
+.card{background:var(--card);border-radius:22px;padding:20px 18px;box-shadow:0 8px 28px rgba(58,160,240,.14);border:1px solid var(--line)}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.bar b{display:block;height:100%;width:25%;background:linear-gradient(90deg,#7cc4fb,#3aa0f0);border-radius:99px;transition:width .3s}
+.stepno{font-size:13px;color:var(--mute);margin-bottom:12px}
+h2{font-size:21px;margin:0 0 14px;line-height:1.35}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;color:var(--ink);text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:15px 16px;font-size:16.5px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:.15s}
+.opt:hover,.opt:focus-visible{border-color:var(--pri);background:var(--soft);outline:none}
+.opt.sel{border-color:var(--pri2);background:var(--soft)}
+.opt span{font-size:22px;width:28px;text-align:center}
+label.f{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+input[type=text],input[type=tel]{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+input:focus{outline:none;border-color:var(--pri)}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{font:inherit;color:var(--ink);padding:11px 8px;border:2px solid var(--line);border-radius:14px;background:var(--card);cursor:pointer;font-size:15px}
+.chip.sel{border-color:var(--pri2);background:var(--soft);font-weight:600}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin-top:14px;color:var(--ink)}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--pri2);flex:none}
+.pdpa{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--mute);margin-top:16px}
+.err{color:var(--err);font-size:13.5px;margin-top:6px;min-height:0}
+.btn{font:inherit;width:100%;margin-top:18px;border:0;border-radius:16px;padding:15px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(135deg,#5ab4f7,#2a8fe0);cursor:pointer;box-shadow:0 6px 16px rgba(42,143,224,.3)}
+.btn:disabled{opacity:.6}
+.back{background:none;border:0;color:var(--pri2);font:inherit;font-size:15px;cursor:pointer;padding:12px 0 0}
+.hide{display:none!important}
+.done{text-align:center;padding:14px 4px}
+.done .ck{width:72px;height:72px;border-radius:50%;background:var(--ok);color:#fff;font-size:38px;display:grid;place-items:center;margin:0 auto 14px}
+.done h2{font-size:22px}
+.foot{text-align:center;color:var(--mute);font-size:12.5px;margin-top:18px}
+.hp{position:absolute;left:-9999px;opacity:0}
+
+.agent{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;margin-bottom:14px;box-shadow:0 8px 28px rgba(58,160,240,.12)}
+.agent img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--soft);flex:none}
+.agent b{display:block;font-size:17px;line-height:1.3}
+.agent .role{display:block;font-size:13px;color:var(--mute);line-height:1.4}
+.agent small{display:block;font-size:12.5px;color:var(--pri2);margin-top:3px}
+.quote{text-align:center;font-size:15px;color:var(--ink);margin:0 4px 16px}
+.quote em{font-style:normal;color:var(--pri2);font-weight:700}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.trust div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;font-size:13px;color:var(--mute);line-height:1.45}
+.trust b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:2px}
+.callbtn{display:inline-block;margin-top:14px;padding:11px 20px;border-radius:14px;background:var(--soft);color:var(--pri2);font-weight:700;text-decoration:none;font-size:16px}
+.contact{text-align:center;margin-top:18px;font-size:14px}
+.contact a{color:var(--pri2);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><i>♥</i>Bella Insurance</div>
+    <p>ปรึกษาเรื่องประกันฟรี ใช้เวลาไม่ถึง 1 นาที</p>
+  </header>
+  <section class="agent">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCz/wAARCADwAPADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDT/tKMReYmdwPBFcZruvy3Vw4eQLg9M1d1zUns9OW3LLGCM4HBP9TXAzXDvKQq9T1Y4rgcb+6j1oyt77OgTU1hjzKy8j5Tnv7VhahqE+pXTIAQx4NZuoXEko8lQyn8wa2NI0y7ltFnEbPJNwDjsK1naC5UZRbm7s3fC/hA3siMZ4iVG7Y74/E0zxJHc2MkgW7RuNvy9Me3pUunWM63SxXF/JZoeuFLfoKdrzSlDCCkvljIdVwSPWtY25TGXxnCTySMvzhTt4PGDUMUKs2Rn6VauEV5GZnYuTzk9aS3hJcHOOfwrCTsdUU2PtUu0kGxhj1IrpLC6uEjxs/EHrVa2hcABkBA7jrWskQKBgqv7jg1zSlc6Yxa6iJcq8jFQocDBAG0/wD16lhfzHwxyR3HBFU5I1LEhCG9M4NNiZjIFwxZenYitKcdbkTlbQ3UZ4mV9pmj7svWtZNRH2cMGSRR2bg1hWpLjcGYMOrAcj6irMquqFwFViP+Av8Aj2NezSVkePVd2S3V/FcERg4Y/wDLKT/2U1Ssbu903UkurCUxXEB3KG5I+metY19P5hIT5XU/MjdR/n1qumruF8qQl+xDdR9DWVVp6M2pJrY9s8M/Eu81GSGz1G6igkJ2+eVwP+BDt9a9YQbIwd+/Izn1r46k1ORAHWXJXof4h9a7/wAFfFW4guIbHV53ktjhVkJyY/8AEfyri5nBu+p0ypKfw6H0KZolGWcYqJtQQHCodvqetZVvKk0SyIwZWGQQcgj1FPJodVsw9mrmrDceb14PpU4IqjYH5MMyj055q4HRiQrhsdcGtou6M5KzsOPSsvWtRvbOJItN05769myEB+WJP9p27D26mtLNLVlU5KElKSv5HFQ/DxdTvxqXiu9fVrv+GFcpBH7AdSK7C2toLO3WC2hjghThUjUKo/AVKaTpQbYjF1sRZVJaLZbJeiWiHUmKjknSIfMQPxqqb5Xkwm4j8hQcjdi+KXBpkJ3AZqxinYnmPkfWIBPM8m55pCcEnqfYelZcekEI8kp8vjovWuikiZYBcTcMeFQdvb6+pqo37oNJMRuIJJJwFFclNWlqehN3ic5ZaP5mpxlxsXdkBjkn617Xb6JZaZ4Zhv4ihKKcow4FeO2t48WomVhuY84PQDtn/CvUI9Xe58JQpFJumVsnjtj+VOUvfuwUfcsiul5bW0B1FY4wJCQViOMH6HNcHr2pG/uWMW4OxxyeT+Nat6xSOVWkaBm/gVco3v7Vy93bvIGBYsc8EdDVyqKxnGk73Me688MUlH3Djn/GprFirgjKj16ilFoyyEFyB6DmpbPdBKGkjKAnG5eQfrXPJ3OqEbG1FMVx5iAejqeKm84ICQSCOPrTQiOuEIRh1XsaajrG+xhtY9Aeh+hrOMeY0k3EbNc7uH4zwM9Pzq3YTMf9ZGZBH0YffT/EUot0DFgowwwyt0NWobdYxvwxUdCv3k/xFenSoWWh5tWvfRmhFGp2zpIGU/xr2/D0qws8DFoXT5j1TIAb3X/Cs+dbiGNbm1KsTyyqfllHqPQ1nzX0d9GNh2senbn0/wDrV17I478zI9X0xTIZYdzBD0HDL7Vz99ahpHQbyyc4Zdrj3961G1iWCRYrrcSvCyD7w9v/AK1TTTpeopJjLY+Xt+IP9K5Z2kdcLxORM8kL4dt4P8VaFnMgYEgYPb/PSlvLFnYkqof+8Puv9fQ1SjglWUrCj705MeMkf4iuWSOqLPYvhz8QDpkqaRqkpNm5/cyMf9UfT6V7JHKJACGBHqK+RYZmY+XkK390nkH2r1/4WeOmlWPRdSk+dflhdj/46f6Vzu8TSUVLVHsIqWG4EGSFyT3qAMCoIpCeatO2qOZq5orqURHzBgfTFI2pp0SMn6ms4jFNB5rT2kieVGoLyST0Ue1KzsV+8aqw9KsH7tbxZzyKs9Mg+/Tpqbb/AH6tbmbNm3+6Ks1Wg+6KsE02Sj5atd06h5HAjjX5cjt3P+FU9SjMluZWPB+4p/magjvHkXyxxGBl2PAJqvq+oKEGct8uEX1rjTbZ6lkkUVSSeUMFAj3f99H3rtdFndEWLOfbsK46wLyyKXzux0HQe1dvolocLxya58RKx1YeNyDVLbc7MACmelZElokx5j49q7hrBXDKV6nAqnJofz5VcEelcqq6WZ2Oik7o49dBSQ8VYj8PqnA/EY4rp/7Nkj/+uKelsw6ii8hpRRy76PtGAvQYrLubcWr7Jl/dt3IyB/hXevbqB05qjdWMc4KsmR3BrenWa3MqlGMtjmoflTaTvixww5K/4imyTSaeQ4bzITztB5Hup/pV240eTTVZ4GLW7c8fwmqR8m6jaPaBIfvRHo3uPQ17NGqpLQ8SvQadxf7VRk8yBkdX5ZT0b/A+9Y19Kv2hpoY8b/voTgMfr2Poaiu7Oayk822LOp9ufow71Sa78wEEbWHBU/56e1XKRjCFi9MyXduBITyOCR8w9sf59qynka0/dLJuB5HofoaVbnadjklf4ST09v8ACknlhYHcpaI/eI7Gueep1QGDULgDMUhSQfkw+nrUp1iaZdk52sRgOg28enHUVTSDe21JF/2WJx+foaa+HXay4dfve/vWDbN1FFkTLJxKgcf3hww/Gte1byhFPbzb5V5PGCPrXPIpU5OSvrVuJ2j5U/Keh/pWb10NF3PovwD4zGsWiWd22LuMfxdXHr9a71eVz618o6Nrl1Y6hb3EcjCSBvl57dxX0p4W1+DxBokV5AwLYxIvo1ZrR2IqR05kbDCox96pDyKYPvVaMC3B0qwfu1Xhqdj8tdUdjlluVJqS3+/RPRb/AHxWiM2bMH3RU/aoIPuipz0qiUfD1xqUsxSMSMFUADnoO1JbSPf3ckrZKxjA/l/KsuWYfM44zk5rR0yVkhEacCTg+/euPZXPU3djrNEtt5z2HFejaRa7YVOADjFcZ4etceWuOvJr0OwTy4hn0ry68nJnr0YKMSVIAZDntVgW4POOacgyd3r1qworFIuUimbRWHIqCSwQDIFa2Ka0ee1aoybMCSzxn5fxqpLbY7V0ckQx0qpLbhxjFWFznZbfcrADIPBB71yus6KQfNgysi8iu9ltcEiqFzZlxyK0jNx1RLgpbnm0d41wzRTqEnXghhwwrP1G0WUEsCrL0fuPr6j3/Ou31rwr9qTz4PlnHII71ycrSqTFOPLmTjp1/wA+lelTrc6s9zzatDkd1sczKmXMcgw36Gq774G6nB4z7e9al3Ak24xqVZfvJ6e49qpI4J8qXn0Pf/69Nsi1hkfqgBHdf6ip2hEsDSI+HT7o9fao3tnhwyjch5BX+lEc21/mOCf4h/WsZeRvG2zGh/LXfjKHhh/dNSB8cx4ZG6qafLG2TIqjJHzL2YVS2mAgjLQk8HutStSnoaMeQA65Kjv3X2P+Nei/DfxcNE1AwzFljmYBwemPX615xBceWwIIOfyYVZEzrKs0bkgdvSs5K5orbH1vFOs8SyxkEN6VIvJFeY/DTxY15Zi0lkDmMYAzyR7e4/lXpsRBAZTuU8jFEJXOWpDlZbi6VMfu1FF0yOlSN0rujscEtypNS233xSTU61HzCrW5m9jXh4AqUtxUCHAFK74FUSfBd2rKkYwfmbH1ra0OMTXgXsvFY982DE3YZNb/AIVjLSBhXBUfuns0l756bo8QjeLiuwt/mArmNLTKg/3RXR2rHArzJK7PUT0NFBxUy+oqFORU6KaaRDY9acRxSqtPCVaRkyEpmo5Ic9KsstJjinYZmyW2e1Vnthg54P6VssABVSdAVyKpDMOT9zuVgCp4INch4q0eG6h+0Q4Ei/mf/r+9dVq9ylrEWc9K861jW5rh3VFIQVtTuZ1EjGnhjV0O4GQdGPQ+xrLvrPzizovlsDkqP4fpW1bWc18CfLOT196W4sXiVST838Ln+RrpvfY5lFbM5qC7MTGCb5S3r91v8DU0loJFZlxkDJHr/jV7UNLt7mIMgMcn8SH+E+v0/lWPtuLKTZIGKj16ih9yVpoyxC7RIscoPl/wt6UTW5iYuo3K3JXsfcVJFcJMpXeOeoboakCbEKjJj6lCclfdT3rF7m6WmpkOTC4P3oHPHtV+0kKttckejdajnt/JY5G6GTr/AI1CjGGQQMev3D2NV8SI+B6nU6Hqsui6lHcxOYzkEgfdb3FfQfhbxLb6xZRzRsBvwGX+6/8Aga+XrW6JJikGVPb0rtPCOt3OhXySh2ks5PlkXuP/AK46isXFxdypJVIn0xE2PoeadI+BWPo+qw6jp0VxDKHVh94d6szXQA69a2ddRjc8mpGzsSySgmp7UgmsRrkluK0LGfJArlw+PjUqcplJWRur0psh+WmxyAgU6QgrXsp3M2fCF+Q1uigdDjPriup8Gr8wBFczInmRSKf4cOK67wugUoRXn1n7tj3qC9656bpihYF9+tbdt0FYllnywRWzanpXnnezVh6Crka1TgPAq4j4FNGbJ1UYpxA6VXabFAnB71oiGiRxUZOKGkFRM+RxV2ASR/esq/vfJjbHWrdw5VTisK73TOV5I6iqSC5zepPNfz8kkGktfDkbEPcLnJztrcjtEjIYgZA60txeQ2sLSSHCrQ5W2BRuUJtMjjT92oXHpWDfmzUuskseW4ZAc59/rWD4o+IJeY29oflB2k/wr9cdawdMvLjU7m4jnvGXYpdGT5VYVcKdR+9sROtTT5NzclhQTBS+5T9xx/I1BLArKY5I9xUcDvj1H+FZ9sNQNzgs8sJ7Hr9Qa1Mvt8mbr/C3Q1o5EqPWxgT6cd5aBgO49Kht7lg2xzhh/nitW6t5VY+YOf7wHDVRlthjlcZ6HtSbTQlFp6FsbJYtjYBPPsfcVl3do6MFP3kOVq5bOyNscbsdQe9XJIFmg2jlTyjdwe6mslLlZpKHMjHPyusgyAeW9j61t6ZqPkOA3QcMPUVlsQfl6MOhPQ+x96rxu6yFTndH091rWWqMYvldj2rwJ4glt7xrAyB43XzIiOAw78djXoDXZkUHPXvXhegSyWi2eoROSsMuGX0B/wDrV67BdLLFuB+VhmvHxcG17pjiKd1zGwkgPcZqzbXQRxzWB9p2sOaQX21+teTTTpyUkeZJndW11uAOauCbcODXH2WroQBu5roLW43pn1r6/D1/aR0MWfFjt5dwvocg/Sus8MMVcIeccVy06qdr+gzXU+EcSSrnnFKt8J79H4j0/TeYlB7VuW0ZzisfTkCleODWq+pW9mPnYA46V5y3O97GtEu1eajmvEgB3MBXI6n4z8vKwcD1rAfWbm/kyzNz0FdEYGLZ3suuwDjdk+1Ni1dZG4PFcba2V07bsH6mt21smQAkgHuKqyQJnTR3W9QQetOEmeKy4DtUDNXYTk0XCxLKNyHis2aPaSa2kjLiqt9alUJxTe1yU9bGFK+FNchr10sl+ltLKFjIy3OOO/8AhXV3Mbg4Fcy3h5Z9auL67O8ltsa9lUVN0ndmiXMmkcUfCrz3rwWcUc0BbKSscYHoR6iux0b4fQWcXnXDB5WHJI/QDtW/aQxwAbIxn6VoL5sgwBgVU6056EwoQpu63MRtFtofkVBj2HP1rP1HRVmiIdMN2Yd/f612UNl3YZPrT5bBXHK8dxWSdjV6nk0tu8T+TcjI/hfsf/r1RurVoxhQPXnoRXp+o+HI2QjYGRucD+Yrk77RJbVSRiSAnj/PY1q2Soo41UDjgkFemeq+3uKs2suJDDKu0t09/wD69T3doEfcoK+46inQwrIoVlUt2PYmok9BJNOxk6tay29x58fRxyOxIploYr9NwG2RBhh3xXSywrf2Dx7Skqc4PXIrj4nkstRYAnAb5T6CtIS5o26oxnHklfozv/CFt9os9QsXAY+TvX6rz/jXYaHdMiC3Zixi+UMe46g/lXG+Db2OLWFkb5d6FG9Dmun0b5NTkVjkZA/IVyVdU0Nx5tDdM7HcrnjPB9KpzzspPPI4NaFykWMKrDPPJ4qk9sbmUmMY6Aqe1ef7Nt2seNUha5Y0VZru8AGdoNelafZskK59KwvDGjrAqkrzXbxQgIBivpMHhlRhruzg+Jnwmz5gjJOOcH8q3fCd2IpwpOcHGa5mRiLcD0b+lX/DUpN2h98GlUV4s96lK00exvrC2GmtIT8xGF+tc+t/d6jOQu5mapLm2fUp4IFOEUAk102naTb2SqI1yfWuFNRVz0GnJ2KWn+FmuBvuWIz2Fbtv4ftrXHlxge55NFzqkOnQGSVsAcADqT6CuH1/4lzW0vlQfIx6KnX8T/hTjKU3aISjGmuaR6E1r5Y9qhMgQ4ryFPHuoXUkX7zLM+11JbgdjnNdRc65d6RciOXdcp6Idx/KtnTnFamMKtOb91nbi4AbrV+1mDYrm9JvYtUt/Oi3rt+8kilWH51sWxKtx0rnk+pul0Oqsl3Yq1fWfmQ5A7VQ0uYHFdLCqyRbcAk1vSfOrHLWvB3OHnsOelQtpyZG5Qa628sFZiVABrMktAMg8H0qJQaNYzTMePT4gak+zKvSrUkZTtUYBzWfqbIRIsVL5KsOSfwpyLUqgVUUJszpoNuR1U1mXWl+eGKcMe4Gc/Ud635VJHPNQhcHIqmNM8u13RZUl3bNhHcdDWGqGFysqEH1A4/Ef1Feu6nYpcwtuUc15d4inGlXiJKoaJztGeDn2/wqb3dgdkuYdEod1YHLAYB/vD0PrXMavpqW1/LIXyr/ALwIPve/0rprGSKT54ZMZ6g9PxB6VU8TWMk6wXEQCvGSGB9KIPllYyqLmjcpeHp2yJgMEHOP6V6Poai5d517uP5V55pESRxNg8ZFei+HI2jjUE/LIx2/X0rKesrAl7tzpBb+bChI6Vc0zTt06lh17VYhtiluh6jFaemxgOMDmuyhRV0zyq73Zu6XahEAxW0qYWqdkAEFXs8V6h5qR+fsh/dOPcVJ4fmC3OB1zmorgHyZD2yP5VBpD+XqCe/WuV6xZ6ibjOJ7Ros26BZB1I5rfgucAkmuZ8NEPaY64rXu96W7iNWZiMAAV5E97Ht0/M5XxLr3m6msO8jcSqhf4V7n6mo7/RI9Xa0l023KSRrscOuAw9frWpo/hKSW+N5eL8zHgeg9K7e2ghs4wFQDFbRq+zVoGc6SqO8zjdB+GkQlW41J1wDu8tBtX8e5rsXsbO2+W3gXd/eI5NTCSa4fbGpxWna6UQA0gyabm56yEoRp6RMq3tJGbcRgVfjh2DkVqG3VFwBVWRQDisJbmkWPs5NkgxXV6fNlVPoc1xyHa4rotLuBtANaUZcsjOvHmRu3cI37wOGGazZ4FYHI/GtaOQS2wT+IdDVO4iYKRXoS11R5tNtaMwLsRxkqTk+tUdyZ4rZu7ATxH17GuXuFktboxtkGuSa1uehT1VjSDUu/3qglzjrUyTBu9Qma2J2bNMU0uQRSdKq5DGT4KEV5T8UdN87Q7iRV5j+cfhXqkpzXOeKdNF7o10hGd0bD9KS0kmS/ei4vqeB6Brs0U0cMpLdlk7j2PqK7xrxZdO3SJuUYJAPb1FeZadHtui3/ADzyPx6V6BpUnmWZCnBKEj6ita6SkmjDDNuFmzUsraOSFnVt6HnOPmH19a7TQYvNsdynmNgy/WuHsS8IE0J+TqwH8P8A9au48K3scgaIYXf29DXPKL5tTdv3dDsba7WRUP8ACFwa1rJwsgINYaWhtxhchWOeexrS09ZN+BmuqlUseZXidfZSgr1q8WOKztOt38tXIxWg/C16CndXPMcdT4CvX22zY7saz7SQpco3vVnUPlt0U9Tgmq8CblLelZRXundNt1Eew+CpDJFg98V30Vur4AH1rzTwFdqYU556V6lZEGMGvFrK0me7S1ii1BZqccfhWhFpMb8sKjt8ZBrShfAqY3LkhYNPihA2qKsFOMdBTkbOOaeRXQkc7ZRdOvGKzrkbDzWvMQoNYl/JubANRJGkSISBnrYsJNo4PSsZbf8Adg55q5bSmMjmoW5pJaHU2l2UYHNW7m8WQ78AHHNc5HdgDk06W7JhLZxgV3wqaWOCVJOVzWa9i2bQAPeuc11FuZ4mjAyoOcVhy319eXoWKVo484VV7+5roIbRhCiklmA5Y96E3UNHFUtTG2EHBpMFTwcVrz2JK5A5rIuXEBIbjFZyhbcuNS+xMszAetSRzCQZBrATWoJLsQxurHODg5xWzZ4aR/QnNZW1Lb7lphlagvIVeykDD+E/yq4U+Ws3XboWWi3U7HAjiZvyFaJGDZ8vN+5u2UcAyk4Hpmuv0OQxtsPQMPyNcXFunusnqTk13GjqjrE54/hz+PFbVuhjh+praez2141sx+ZT8p7MK34oWt9s1oxDdSgP8q5/VFmiWOeIbtudwA5I/wDrVd0fUftCr5Z3jqyE8j3FEveXMio6OzPRNE8TJcwCC6bkcbj1H1rudD8mYghgfWvJoEVj5q5J7sB8w+o710Wj+If7JmilkB8o8Fo24P0/wqUrPmIq0+ZWW57LCoQDb0NLKPl6Vi6Rr8GqwiS2ljnHfB2sPqK1p5CIC/TArscly3R5Li07M/PnUSGlFR28gjIU9GzTLpzJIze/FMuAY5lH91QKqK0saylafMjsPBup/ZNTWFjhZen1r27S5/MhU1822krK8bIcMjbga918Iaul/pMTg/PjDD0Nebioa8x7OEqXXKzu4G4FX4jWTbSZArRR+K5Io7WaMb8U8ycVTR+Kc0nFdCMGhLiXisW7Yk5FXrmTg1Qb5utJlLQmgl8xAO1RyXkEb4DMSO4HFVHRkzsdlz6VWKnPzMT9ahRNHJGxFfxyDhvzpl5qIFu0SHJbisYyiM8DmpLeKS7f0X1raKMpNGtoqo8u9hk9q7C3WJLctMQo9TXFR3kWn/JGQXHU+lMm1K9viYbfdI/tW8ZqBlLCyqe83ZGtrWv2lmGWJtzdhXiHjvxnqt7qaadZ7reKU/My/eb2z2r0u7sBa6S9/cE+dH8zZ/hHeuAstGfVfEEt7t3QM2YcrjCnvRd7yLhCDfJS6bsv+D9Bexso5mLF5DuYmvRbIbVqGy04RwRxhcBRitBLfyyBWMk73IlNNsm3cVxHxV1EWPge7Cth7jEK/wDAjz+ma7KYlBmvFvjHrfn3tjpiNnYTM4/Qf1q4atIwnpG5xdrp5LmUcKybs1r6Zcqk01qflyvyeuB/XvVnRBHqWlKFwGwUx6Ejj9RVGexmAiu4ARJG+D7MO1dXLdamF7PQ6m3dr6xHzEOvzBh2NU2s5rW5F1a/IwOWQfzHsfSreiuqgXCKfKk+/H3Ru4/rU1+Y4WDxsDG3KN2+n0/rWCTibuzZesPE9sNvm/u3HUipNQuba8O6OQqTz8hxn8OlcdfqtwfMBKOTjdjofRv8aitL6ezl2PvT1B5BqJRdtC4tXO302fVdNuvMtZnVo+SAcEfWvQNJ8bR3VsbfU5p0nzw+84z9K8v0nxC1vcxyRONw+X5+QR/dPqK2tQu49Vlhgs4CZSclh1A7rnv9a59ehpOKe6PBoowbkFxlFO5voKiukJZmPUnNXpAEt0OPmm5P0HSoZI9yEe1etc8dxumVIpdrgZxXoHgfVJLK9CO2IZT+RrzgitC01q7s49kZQ46FhnFTVp86sgw9dU37x9N2N4HRcGtiGXIFeX+BvEi6tpcbOw85PlkHoa761uOnNeRKLi7M+ghJTipI3FfjrSlqpxzZHNS+YMVSkDRDcv2qq0gFPmky7+1Yuoatb2eWnlWNVGSWOKaJNMsCKqzsEXLMAPeuPvPiPpcFwtvBN5sjHAIHH51qWDS64AzXCoGXcuOc07S7FRUPtSLj3sS52/MfU1G17OwAjc59FrQsfD1t5bCdmeQHG7OBXQada2VvahSiArwTirjCUipYuhS+CNzA0fSrrUpwZCY4s8k9TXaWenW2jsSrAI4+8x6GsWTWrWwvTDCjSFxu+QZAPv6VXudUF+6C6CrHGd6r1wa3jy099zGUMRjntaH9feaF3ay6zeTwRNGtiVy7sOnrk+lQ2ul2m4RW6YVOpx973qlJqs0/+i2+ViY5KjvXS6VbCG3G7lz1oUlJm1amsLT5V1/q7K4tjGcYp3lE9q1hCCelRyxhQTQ4nl89zCvwI7dmPYV8u+LdROr+Mr2cHKB9kf0Xj/GvoL4ia+mh+FL653ASbNkfu54H+P4V8ySkrcI4PXDVpSjuzKrLZHS+ELx4L4wYyG6D178e/evRf7LSRWnVN8Mwy+0df9oe47ivL7NDGyTRnDIeo9Ox/pXpOha8JLff1H/LWP3/ALw/qKfPqWoe6iBbd9OuTt+dG5OP4vce9VZ5DAzOB5lu/LL/AFH9RXUS2iXUZlt9siHkx5/UGqn9lLKCFbGecEYINClGWgNNHNPFG6Bwf3bD76jcMe4qvI0UcA82aOSPO0HBOPxrVvdLmsWZljaM9dyco3+FY009vIrR3MYXeMHHGayas7M1TurorGFUl8yC4DIeo9K7XwDf239uQi7O4fdVgehrkIdOZDutZPNjP/fQ/wAa0LWN7MwzFBHKeSB9azkrO5a95WOFETTxq5XBbLAegHb8qk+xkSohHU4H0Iq9tjt7+3i4I+ZT7ZFJeShZItvVWC/lW3O7nOoJLU5S4UxTPGRgqxBFRDk1Zv1zeS+u4/zrW8GaD/b3iCOCQH7PF+8l9wO34mutyUY8zPM5HKfKjR8Hab4htJl1Kxs3a0fht7bQ49RmvXdL12JwI5SY5R1RuDWybe3g0+OJEVQqgAAcAVBpfgy31W8F1dplEOUXOM+5rx6tXnd2j6DD01Sja5oWmoQzHCupPsa0VbcvWqeqeG7WCImJBG46FOCKxrXVZrK5FpeNkn7jn+If41mjp0kro6C4iyNy9cVx/iDRkvz+8TcvdT0rrIrtJV6ioLqJZFzVp9UZtWPKtR8CwsN0KZHXb3H0qDTbXUtImi+z3c8awsWCHkc9QfavTfs4PaoJ9Mgn+/GM+orT2ktjSDpt/vI3OcXXdWe5eZbhl3qF2AfKPce9PglvnlbzLqRRIcsN/U1r/wDCOox+R8fWrEPhwAgtIP51HM2ehCWGgrpL7iOG4WODZGBn19TU0MNxctkAgetXItLt4OSC5HrV6BXkYJGvHtVWuRUxlvgJdMs1hK/xN3NdTZodozVGw0/ylBbk1tRqqrgcV0QjY8SvVdR3ZIg+Wql42I2PtVhnCp1rD17VI7HTppnP3VPHqattWOVRbZ4J8bteNxqdrpMbZSH99L/vHoPy5/GvLVlLrhjyOhrqPGzPd6xJcyHLykkmuSGQa3pNOBzV7xqXNvTb4RMqSEAdAT0x6H2rp9MeWzuPMhOUbkrnke4PcVxEShxj15FdHo9+0DLFKNyf3Scfke1ZVFbVHXSk5KzPRdLvmjHmxNnuydP/ANX8q311Gyvl2yAo46sowQfeuChmjYBreQ7h/Cx2sPof8imNq93byAyruA6NjDY+oqLX1Rrfozu51uAreWEvI/phv0rLuILKVR5sKoR/BKmcfjWJb+JCrGSKSQ46huo/GtBPF0Mo/eBpGA6EZNSp2dmVyJrQd9khP/HqYIh6iMk0i2Em07JHnkJwNse1R75NKPFsJUrFbNj2wM1HY+I7jUL1bS2VYpHbaMrz+dEpJjjFo8yjleeVJzks0xYVdkhZ9RTd3bdTbO3KGGPGHTB/xNWiSJribHEa4H1pyeuhjCOl2crfsPtr4/vH+depfCfSG/syS7K/NcyYB/2V/wDr5rylo3ur4RxDc8jhEA7nOK+l/CGjLpWhW1uoH7tAn+J/OniZcsFHuYYVc1Rz7GulgJGBbn2robKHyFRBVWyt975I4WtFeGGK81K7uem5WVhbvTlnQktgmuV1rwPcapbsscqJjlWOQQfUV15kOeegq3FN+7wBkkVoveZKnKC0PEpZtV8NXAt9Wj+TOFuE5Rvr6Gt601WK4jHzA5rs9c0qC/t5I54ldWGCGHFeX6j4TudMlaTSbgqgOfJk5X8D1FNqxvGamjp1YOcg1JsyOlcfY+IJbacQ38TQP0+b7p+hrqba9jnUFWBqWOxYEZHapkRsYp0OGq4kYxkUJiZBFaM7DNa1rbJCMgDPrVeMhTU/m4FbxZlJNmgk23vUonz3rI88g9aQXLZq+cz9nc1JrgBeteb+MdUa7lMCHMUfXHc10Or6qUjMUTfvGHJ9K4vUI8o1ZynfQqMLanlniyMlw+OhzXKSxfvAV5VuRXceJ4iysSPpXFpyxiPBzlfrXZQfunBiY+9qSW6gHaxGeoFW4pCr/N+f9KpBfmGeDn9fSriDeOnzDqPWrkiabsatvOxA2PyOgJq0Lkt8shwT69fzrLgJHynlexqyZSvDgOo7HqK53ozsjqtRbi4uY2HlzOPY1Ja30rnLsQ6c8fzp8Ztp/wB24ZT6HnNP+xwROjCWRk7HAOPai6ejE4tO6NVLEXlqZIyQ3Xj1rp/AmjPc6oL2ZT+6wMgdTWbpOmzf2e1wiMsX3QT3Jr3bwT4etrTQbePytsjLmRz79hU0qUpMdarGEbnzXYWO5JLg+mBnvVXWRFpukMGb94xy3uT0Fbd1cx2sGHIRUHmP7DsK881bUpdSlllfITcAi+g5NXTi5yuY1qipxstzd+G2mDVPGcMki5S1Uykds9B+pr6Ss4BHCi+1eSfBLQ2+xXOpOv8Ar5Aik/3V6/r/ACr2qCAmVRjgcmuXFT5qjS6GmEhy00311LdvH5cQHc9aljTc+aXb6VOq7V96zWxpJ6kTJzU9uwBGKhIJNPVdo96q3LqK/NoW5LQXSnnNcrquhTJKWgIZT/Ca6iGXyRk96SR1mPStVHmV+pMZuD8jzDVNCaSNhPakg+2RXITLd6HcbrVi8XeJz0+hr3W5gjZCMA1yGtaJDcqytGrfhWck4nZSqqW5zuheI7e8QAkxyDgq3FdNHcKwGDXGLobafclo1+UnlTWfaXlzbXDwrM6hGIxms+uhtKKPSkkyetS5GOtcnZ6jckDMpP1FX1uZpBzIapSM3E1pJUQ8t+FUrm+baQnHv3qEZxmoZulF2TYpSHfISTVO9jzGRV7b81V7ofIaBHnniWDK9PWvObqMxyk16tr8W5WJrzPVI9lxkCuzDy1scOKjpcZbsJY8SAEkcN/jU8RaNwGWqsJAIA+tXh1wOR6GuiRhBFsqCFeM9e3rUrKrxBx1FVCfLjAyQM5+lXFAa33pIGDfgc1i431OhStoRENjI/h5H0rU0pvMvoQ4ykmNy1DaQhgWx90d66DwppL6rrEKwpwnJPYVG7sa7K56fb29vLHbQIoW2tsPgjBkc9PwFd1Z6gyoEQ4QDArmLLRjDsd2Mjq/U966jT9NZj5jjCgV3wTPOqOJ/9k=" alt="รตนพร คุณดำรงค์กุล (เบลล่า)" width="76" height="76">
+    <div>
+      <b>รตนพร คุณดำรงค์กุล (เบลล่า)</b>
+      <span class="role">ตัวแทนประกันชีวิต และที่ปรึกษาทางการเงิน</span>
+      <small>หน่วยนำทอง1310 · รหัสตัวแทน 702706</small>
+    </div>
+  </section>
+  <p class="quote">เพราะประกันไม่ใช่แค่เรื่อง “คนรวย”<br><em>แต่ยิ่งไม่มีเงิน...ยิ่งต้องมี</em></p>
+
+
+  <div class="card" id="card">
+    <div id="flow">
+      <div class="bar"><b id="prog"></b></div>
+      <div class="stepno" id="stepno"></div>
+      <div id="view"></div>
+      <button class="back hide" id="back" type="button">← ย้อนกลับ</button>
+    </div>
+    <div class="done hide" id="done">
+      <div class="ck">✓</div>
+      <h2>ขอบคุณที่สนใจ</h2>
+      <p style="font-size:18px;margin:0">เบลจะติดต่อกลับโดยเร็วที่สุดค่ะ</p>
+      <a class="callbtn" href="tel:0955599441">📞 ด่วน? โทร 095-559-9441</a>
+    </div>
+  </div>
+  <div class="trust">
+    <div><b>ให้คำปรึกษาตามความต้องการจริง</b>ไม่ขายเกินความจำเป็น</div>
+    <div><b>ดูแลตั้งแต่เริ่มต้นจนถึงหลังทำ</b>มีทีมบริการเคลมช่วยดูแล</div>
+    <div><b>อธิบายเข้าใจง่าย</b>เลือกแผนได้เหมาะกับคุณ ทั้งตัวเองและครอบครัว</div>
+    <div><b>ใส่ใจเหมือนดูแลคนในครอบครัว</b>เพราะทุกคนมีเป้าหมายชีวิตไม่เหมือนกัน</div>
+  </div>
+  <div class="contact">สอบถามเพิ่มเติม โทร <a href="tel:0955599441">095-559-9441</a><br>Facebook: SurePlan ประกัน by Bella<span id="lineid"></span></div>
+  <div class="foot">ไม่ต้องสมัครสมาชิก · ข้อมูลของคุณเป็นความลับ<br>ตัวแทน หน่วยนำทอง1310 รหัสตัวแทน 702706</div>
+</div>
+
+<script>
+// ====== ตั้งค่า ======
+// วาง URL ของ Google Apps Script (Web app) ที่นี่หลังสร้างเสร็จ ถ้าเว้นว่างจะเป็นโหมดทดลอง (ไม่ส่งข้อมูลจริง)
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbyH_BhZbPCMSTALl_PySJCHPiAMvJEsOi5J9U1Z7uteG4fmEgig45LOO8Wb5HP1Rweq/exec";
+// ใส่ LINE ID ของคุณ เช่น "@bella" (เว้นว่าง = ไม่แสดง)
+var LINE_ID = "";
+
+var steps = [
+  {key:"forWho", title:"ทำประกันให้ใคร?", opts:[["👤","ตัวเอง"],["👶","ลูก"],["💑","สามี / ภรรยา"],["👨‍👩‍👦","พ่อ / แม่"],["🏠","คนในครอบครัว"],["🤝","บุคคลอื่น"]]},
+  {key:"product", title:"สนใจประกันอะไร?", opts:[["🛡️","ประกันชีวิต / มรดก"],["❤️‍🩹","ประกันโรคร้ายแรง"],["🏥","ประกันสุขภาพ"],["🚑","ประกันอุบัติเหตุ"],["🏦","ประกันสะสมทรัพย์"],["💬","ยังไม่แน่ใจ ต้องการคำแนะนำ"]]},
+  {key:"budget", title:"งบประมาณต่อเดือน", opts:[["💰","ไม่เกิน 500 บาท"],["💰","500–1,000 บาท"],["💰","1,001–2,000 บาท"],["💰","2,001–3,000 บาท"],["💰","มากกว่า 3,000 บาท"],["🤔","ยังไม่กำหนดงบ"]]}
+];
+var times = ["ช่วงเช้า (8:00–12:00)","ช่วงบ่าย (12:00–17:00)","ช่วงเย็น (17:00–20:00)","เวลาไหนก็ได้"];
+var data = {}, cur = 0, slot = "";
+var view = document.getElementById("view");
+
+function src(){
+  var p = new URLSearchParams(location.search);
+  return p.get("src") || p.get("utm_source") || "direct";
+}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function render(){
+  document.getElementById("prog").style.width = ((cur+1)/4*100)+"%";
+  document.getElementById("stepno").textContent = "ขั้นตอนที่ "+(cur+1)+" จาก 4";
+  document.getElementById("back").classList.toggle("hide", cur===0);
+  if(cur<3){
+    var s = steps[cur], h = '<h2>'+s.title+'</h2><div class="opts">';
+    s.opts.forEach(function(o){
+      h += '<button type="button" class="opt'+(data[s.key]===o[1]?' sel':'')+'" data-v="'+esc(o[1])+'"><span>'+o[0]+'</span>'+o[1]+'</button>';
+    });
+    view.innerHTML = h+'</div>';
+    view.querySelectorAll(".opt").forEach(function(b){
+      b.onclick = function(){ data[s.key]=b.dataset.v; b.classList.add("sel"); setTimeout(function(){cur++;render();window.scrollTo(0,0)},180); };
+    });
+  } else {
+    var h = '<h2>ข้อมูลสำหรับติดต่อกลับ</h2>'+
+    '<label class="f" for="nm">ชื่อเล่นหรือชื่อจริง</label><input id="nm" type="text" autocomplete="name" maxlength="60" placeholder="เช่น คุณเอ">'+
+    '<label class="f" for="ph">เบอร์โทรศัพท์</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="12" placeholder="08x-xxx-xxxx">'+
+    '<label class="f">ช่วงเวลาที่สะดวกให้ติดต่อกลับ</label><div class="chips">'+
+    times.map(function(t){return '<button type="button" class="chip'+(slot===t?' sel':'')+'" data-v="'+t+'">'+t+'</button>'}).join("")+'</div>'+
+    '<input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+    '<div class="pdpa"><b>การใช้ข้อมูลส่วนบุคคล:</b> Bella Insurance จะใช้ชื่อ เบอร์โทร และคำตอบของคุณเพื่อติดต่อกลับให้คำปรึกษาด้านประกันเท่านั้น ไม่เปิดเผยแก่บุคคลอื่น และคุณสามารถขอลบข้อมูลได้ทุกเมื่อโดยแจ้งเบล</div>'+
+    '<label class="chk"><input type="checkbox" id="c1"><span>ข้าพเจ้ารับทราบและยินยอมให้เก็บและใช้ข้อมูลส่วนบุคคลตามข้อความข้างต้น</span></label>'+
+    '<label class="chk"><input type="checkbox" id="c2"><span>ข้าพเจ้าขอให้เจ้าหน้าที่ติดต่อกลับเพื่อให้คำปรึกษาเรื่องประกัน</span></label>'+
+    '<div class="err" id="err" role="alert"></div>'+
+    '<button class="btn" id="go" type="button">ส่งข้อมูล ให้เบลติดต่อกลับ</button>';
+    view.innerHTML = h;
+    view.querySelectorAll(".chip").forEach(function(b){
+      b.onclick=function(){ slot=b.dataset.v; view.querySelectorAll(".chip").forEach(function(x){x.classList.remove("sel")}); b.classList.add("sel"); };
+    });
+    ["nm","ph"].forEach(function(id){ if(data[id]) document.getElementById(id).value=data[id]; });
+    document.getElementById("go").onclick = submit;
+  }
+}
+
+document.getElementById("back").onclick = function(){
+  if(cur===3){ data.nm=document.getElementById("nm").value; data.ph=document.getElementById("ph").value; }
+  if(cur>0){cur--;render();}
+};
+
+function submit(){
+  var nm=document.getElementById("nm").value.trim(), ph=document.getElementById("ph").value.replace(/[\s-]/g,"");
+  var err=document.getElementById("err"), btn=document.getElementById("go");
+  if(nm.length<2) return err.textContent="กรุณากรอกชื่อ";
+  if(!/^0\d{8,9}$/.test(ph)) return err.textContent="กรุณากรอกเบอร์โทรให้ถูกต้อง เช่น 0812345678";
+  if(!slot) return err.textContent="กรุณาเลือกช่วงเวลาที่สะดวก";
+  if(!document.getElementById("c1").checked) return err.textContent="กรุณายินยอมการใช้ข้อมูลส่วนบุคคล";
+  if(!document.getElementById("c2").checked) return err.textContent="กรุณากดยืนยันการขอให้ติดต่อกลับ";
+  err.textContent="";
+  if(document.getElementById("hp").value) return finish(); // บอทกรอกช่องซ่อน: ไม่ส่งจริง
+  var payload = {
+    forWho:data.forWho, product:data.product, budget:data.budget,
+    name:nm, phone:ph, callTime:slot, source:src(),
+    consent:"ยินยอม", clientTime:new Date().toISOString()
+  };
+  btn.disabled=true; btn.textContent="กำลังส่ง...";
+  if(!ENDPOINT){ console.log("โหมดทดลอง ไม่ได้ส่งข้อมูลจริง", payload); return setTimeout(finish,500); }
+  fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+    .then(finish)
+    .catch(function(){ btn.disabled=false; btn.textContent="ส่งข้อมูล ให้เบลติดต่อกลับ"; err.textContent="ส่งไม่สำเร็จ กรุณาลองอีกครั้ง"; });
+}
+function finish(){
+  document.getElementById("flow").classList.add("hide");
+  document.getElementById("done").classList.remove("hide");
+  window.scrollTo(0,0);
+}
+if(LINE_ID){document.getElementById("lineid").textContent=" · LINE ID: "+LINE_ID;}
+render();
+</script>
+</body>
+</html>
