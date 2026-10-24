@@ -119,9 +119,19 @@ var times = ["ช่วงเช้า (8:00–12:00)","ช่วงบ่าย
 var data = {}, cur = 0, slot = "";
 var view = document.getElementById("view");
 
+var heard = "";
+var heardOpts = ["Facebook","TikTok","LINE","Instagram","เพื่อนแนะนำ","อื่นๆ"];
+// แหล่งที่มา: 1) ?src=... ในลิงก์ 2) ตรวจจากเบราว์เซอร์ในแอป/หน้าที่ลิงก์มา 3) ถ้าไม่รู้ จะถามลูกค้า
 function src(){
   var p = new URLSearchParams(location.search);
-  return p.get("src") || p.get("utm_source") || "direct";
+  var q = p.get("src") || p.get("utm_source");
+  if(q) return q.toLowerCase().slice(0,30);
+  var ua = navigator.userAgent || "", ref = document.referrer || "";
+  if(/FBAN|FBAV|FB_IAB/i.test(ua) || /facebook\.com|fb\.com|fb\.me/i.test(ref)) return "facebook";
+  if(/Instagram/i.test(ua) || /instagram\.com/i.test(ref)) return "instagram";
+  if(/musical_ly|TikTok|Bytedance/i.test(ua) || /tiktok\.com/i.test(ref)) return "tiktok";
+  if(/\bLine\//i.test(ua) || /line\.me/i.test(ref)) return "line";
+  return "";
 }
 function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 
@@ -144,6 +154,7 @@ function render(){
     '<label class="f" for="ph">เบอร์โทรศัพท์</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="12" placeholder="08x-xxx-xxxx">'+
     '<label class="f">ช่วงเวลาที่สะดวกให้ติดต่อกลับ</label><div class="chips">'+
     times.map(function(t){return '<button type="button" class="chip'+(slot===t?' sel':'')+'" data-v="'+t+'">'+t+'</button>'}).join("")+'</div>'+
+    (src()?'':'<label class="f">คุณรู้จักเบลจากช่องทางไหน? (ไม่บังคับ)</label><div class="chips">'+heardOpts.map(function(t){return '<button type="button" class="chip h'+(heard===t?' sel':'')+'" data-v="'+t+'">'+t+'</button>'}).join("")+'</div>')+
     '<input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'+
     '<div class="pdpa"><b>การใช้ข้อมูลส่วนบุคคล:</b> Bella Insurance จะใช้ชื่อ เบอร์โทร และคำตอบของคุณเพื่อติดต่อกลับให้คำปรึกษาด้านประกันเท่านั้น ไม่เปิดเผยแก่บุคคลอื่น และคุณสามารถขอลบข้อมูลได้ทุกเมื่อโดยแจ้งเบล</div>'+
     '<label class="chk"><input type="checkbox" id="c1"><span>ข้าพเจ้ารับทราบและยินยอมให้เก็บและใช้ข้อมูลส่วนบุคคลตามข้อความข้างต้น</span></label>'+
@@ -151,8 +162,11 @@ function render(){
     '<div class="err" id="err" role="alert"></div>'+
     '<button class="btn" id="go" type="button">ส่งข้อมูล ให้เบลติดต่อกลับ</button>';
     view.innerHTML = h;
-    view.querySelectorAll(".chip").forEach(function(b){
-      b.onclick=function(){ slot=b.dataset.v; view.querySelectorAll(".chip").forEach(function(x){x.classList.remove("sel")}); b.classList.add("sel"); };
+    view.querySelectorAll(".chip:not(.h)").forEach(function(b){
+      b.onclick=function(){ slot=b.dataset.v; view.querySelectorAll(".chip:not(.h)").forEach(function(x){x.classList.remove("sel")}); b.classList.add("sel"); };
+    });
+    view.querySelectorAll(".chip.h").forEach(function(b){
+      b.onclick=function(){ var on=b.classList.contains("sel"); view.querySelectorAll(".chip.h").forEach(function(x){x.classList.remove("sel")}); if(on){heard="";}else{heard=b.dataset.v;b.classList.add("sel");} };
     });
     ["nm","ph"].forEach(function(id){ if(data[id]) document.getElementById(id).value=data[id]; });
     document.getElementById("go").onclick = submit;
@@ -176,7 +190,7 @@ function submit(){
   if(document.getElementById("hp").value) return finish(); // บอทกรอกช่องซ่อน: ไม่ส่งจริง
   var payload = {
     forWho:data.forWho, product:data.product, budget:data.budget,
-    name:nm, phone:ph, callTime:slot, source:src(),
+    name:nm, phone:ph, callTime:slot, source:src()||(heard?"บอกเอง: "+heard:"direct"),
     consent:"ยินยอม", clientTime:new Date().toISOString()
   };
   btn.disabled=true; btn.textContent="กำลังส่ง...";
